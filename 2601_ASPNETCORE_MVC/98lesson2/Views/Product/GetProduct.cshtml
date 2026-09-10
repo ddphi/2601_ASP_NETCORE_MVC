@@ -1,0 +1,45 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div>
+    <h2>Truyen du lieu thong qua viewbag</h2>
+    <p>@ViewBag.Product.Id</p>
+    <p>@ViewBag.Product.Name</p>
+    <p>@ViewBag.Product.Price</p>
+    <p>@ViewBag.Product.Year</p>
+</div>
+
+<div>
+    <h2>Truyen du lieu thong qua viewdata</h2>
+    @{
+		//chuyen du lieu ve Model Product de hien thi
+        var productview = ViewData["Product"] as _98lesson2.Models.Product;
+	}
+    <p>@productview.Id</p>
+    <p>@productview.Name</p>
+    <p>@productview.Price</p>
+    <p>@productview.Year</p>
+</div>
+
+<div>
+    <h2>Truyen du lieu thong qua tempdata</h2>
+    @{
+		//chuyen du lieu ve Model Product de hien thi
+		var producttemp = TempData["Product"] as _98lesson2.Models.Product;
+    }
+    <p>@producttemp.Id</p>
+    <p>@producttemp.Name</p>
+    <p>@producttemp.Price</p>
+    <p>@producttemp.Year</p>
+</div>
+
+<div>
+    <h2>Truyen du lieu thong qua model</h2>
+    <p>@Model.Id</p>
+    <p>@Model.Name</p>
+    <p>@Model.Price</p>
+    <p>@Model.Year</p>
+</div>
