@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Lab3_NetCoreMVC_pdd.Models.Book>
+@foreach (var item in Model)
+{
+    <div class="col-3">
+        <div class="card">
+            <img src="@item.Image" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">Price: @item.Price</p>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "my_layout";       
+    ViewData["Title"] = "Home Page";
+}
+
+@await Html.PartialAsync("Banner")
+
+<hr />
+<button id="loadAjax" class="btn btn-sm btn-primary">Click load book từ partialResult</button>
+<hr />
+
+<!-- Nội dung sẽ được load từ partial view vào đây -->
+<div id="data-from-ajax" class="row">Loading data....</div>
+<hr />
+
+<hr />
+<h2>Popular Book Load từ BookComponent</h2>
+@await Component.InvokeAsync("Book")
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Application uses</h2>
+            <ul>
+                <li>Sample pages using ASP.NET Core MVC</li>
+                <li>Theming using Bootstrap</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>How to</h2>
+            <ul>
+                <li>Add a Controller and View</li>
+                <li>Add an app using NuGet</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Overview</h2>
+            <ul>
+                <li>Conceptual overview of ASP.NET Core</li>
+                <li>Fundamentals of ASP.NET Core</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        // gọi sự kiện click vào nút bấm có id = "loadAjax"
+        $('#loadAjax').click(function () {
+            // thông qua ajax load nội dung từ partial view vào id = "data-from-ajax"
+            $('#data-from-ajax').load("/Book/PopularBook");
+        });
+    </script>
+}
