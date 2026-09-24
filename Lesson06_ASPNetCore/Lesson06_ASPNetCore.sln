@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37516.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson06_ASPNetCore", "Lesson06_ASPNetCore\Lesson06_ASPNetCore.csproj", "{8DF0146B-628F-4393-B3AD-4F1A98898AB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson06_ASPNetCore_2", "Lesson06_ASPNetCore_2\Lesson06_ASPNetCore_2.csproj", "{B9C12713-8AFC-4431-90C3-2135E06DE596}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DF0146B-628F-4393-B3AD-4F1A98898AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF0146B-628F-4393-B3AD-4F1A98898AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF0146B-628F-4393-B3AD-4F1A98898AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF0146B-628F-4393-B3AD-4F1A98898AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9C12713-8AFC-4431-90C3-2135E06DE596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C12713-8AFC-4431-90C3-2135E06DE596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C12713-8AFC-4431-90C3-2135E06DE596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C12713-8AFC-4431-90C3-2135E06DE596}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F038B8C0-59F7-490C-A388-768A493C03BC}
+	EndGlobalSection
+EndGlobal
