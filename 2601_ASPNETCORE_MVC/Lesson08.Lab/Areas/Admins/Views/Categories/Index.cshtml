@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lesson08.Lab.Models.Category>
+@{
+    ViewData["Title"] = "Danh sách loại sản phẩm";
+    // Layout = "~/Areas/Admins/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    <a asp-area="Admins" asp-controller="Categories" asp-action="Create" class="btn btn-primary">
+        Create New
+    </a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>CreatedDate</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Status</td>
+                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="@item.Image" width="60" />
+                    }
+                </td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-area="Admins" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-area="Admins" asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-area="Admins" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
