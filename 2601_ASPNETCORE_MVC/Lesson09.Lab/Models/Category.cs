@@ -1,39 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lesson09.Lab.Models;
-
-public partial class Category
+namespace Lesson09.Lab.Models
 {
-    public int Id { get; set; }
-
-    public string? Title { get; set; }
-
-    public string? Icon { get; set; }
-
-    public string? MateTitle { get; set; }
-
-    public string? MetaKeyword { get; set; }
-
-    public string? MetaDescription { get; set; }
-
-    public string? Slug { get; set; }
-
-    public int? Orders { get; set; }
-
-    public int? Parentid { get; set; }
-
-    public DateTime? CreatedDate { get; set; }
-
-    public DateTime? UpdatedDate { get; set; }
-
-    public string? AdminCreated { get; set; }
-
-    public string? AdminUpdated { get; set; }
-
-    public string? Notes { get; set; }
-
-    public byte? Status { get; set; }
-
-    public bool? Isdelete { get; set; }
+    public partial class Category
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; } = null!;
+        public List<Book> Books { get; set; } = new List<Book>();
+    }
 }

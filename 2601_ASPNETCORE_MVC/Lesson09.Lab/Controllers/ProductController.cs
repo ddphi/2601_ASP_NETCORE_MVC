@@ -12,7 +12,6 @@ namespace Lesson09.Lab.Controllers
             _context = context;
         }
 
-        // GET: /Product
         public IActionResult Index()
         {
             var products = _context.Products

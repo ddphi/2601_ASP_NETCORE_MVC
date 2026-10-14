@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Đặt hàng thành công";
+}
+
+<div class="text-center mt-5">
+    <h1 class="text-success">Đặt hàng thành công!</h1>
+    <p class="fs-5">@TempData["Success"]</p>
+    <a asp-controller="Product" asp-action="Index" class="btn btn-primary mt-3">
+        Tiếp tục mua hàng
+    </a>
+</div>

@@ -2,6 +2,7 @@
 using Lesson09.Lab.Models.DevXuongMoc;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 
 namespace Lesson09.Lab.Controllers
@@ -24,7 +25,7 @@ namespace Lesson09.Lab.Controllers
 
         // POST: /CustomerMember/Login
         [HttpPost]
-        public IActionResult Login(CustomerLogin model)
+        public IActionResult Login(CustomerLogin model, string? url)
         {
             if (!ModelState.IsValid)
             {
@@ -45,15 +46,17 @@ namespace Lesson09.Lab.Controllers
                 return View("Index");
             }
 
-            // Lưu Session
             HttpContext.Session.SetInt32("CustomerId", (int)customer.Id);
             HttpContext.Session.SetString("CustomerName", customer.Name ?? "Khách");
             HttpContext.Session.SetString("CustomerEmail", customer.Email ?? "");
+            if (!string.IsNullOrEmpty(url))
+            {
+                return Redirect(url);
+            }
 
             return RedirectToAction("Index", "Product");
         }
 
-        // POST: /CustomerMember/Register
         [HttpPost]
         public IActionResult Register(CustomerRegister model)
         {
@@ -63,7 +66,6 @@ namespace Lesson09.Lab.Controllers
                 return View("Index");
             }
 
-            // Kiểm tra trùng username/email
             if (_context.Customers.Any(c => c.Username == model.Username))
             {
                 ViewBag.Error = "Username đã tồn tại";
@@ -93,7 +95,6 @@ namespace Lesson09.Lab.Controllers
             return View("Index");
         }
 
-        // GET: /CustomerMember/Logout
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("CustomerId");
@@ -101,8 +102,6 @@ namespace Lesson09.Lab.Controllers
             HttpContext.Session.Remove("CustomerEmail");
             return RedirectToAction("Index");
         }
-
-        // Hash SHA256
         static string GetSha256Hash(string input)
         {
             using (var sha256 = SHA256.Create())

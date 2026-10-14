@@ -1,0 +1,71 @@
+﻿@model List<Lesson09.Lab.Models.DevXuongMoc.Cart>
+@{
+    ViewData["Title"] = "Đặt hàng";
+    var customer = ViewBag.Customer as Lesson09.Lab.Models.DevXuongMoc.Customer;
+}
+
+<h3 class="text-center mb-4">ĐẶT HÀNG</h3>
+
+<form asp-action="Orders" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Người đặt</h5>
+            <input type="text" name="name" class="form-control mb-2" placeholder="Tên"
+                   value="@customer?.Name" required />
+            <input type="email" name="email" class="form-control mb-2" placeholder="Email"
+                   value="@customer?.Email" required />
+            <input type="text" name="phone" class="form-control mb-2" placeholder="SĐT"
+                   value="@customer?.Phone" required />
+            <input type="text" name="address" class="form-control" placeholder="Địa chỉ"
+                   value="@customer?.Address" required />
+        </div>
+
+        <div class="col-md-6">
+            <h5>Ghi chú & Thanh toán</h5>
+            <input type="text" name="notes" class="form-control mb-2" placeholder="Ghi chú" />
+            <select name="idPayment" class="form-select" asp-items="ViewBag.IdPayment"></select>
+        </div>
+    </div>
+
+    <h5>Sản phẩm</h5>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Ảnh</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>SL</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.Image" width="50" /></td>
+                    <td>@item.Title</td>
+                    <td>@item.Price?.ToString("N0") đ</td>
+                    <td>@item.Quantity</td>
+                    <td class="text-danger fw-bold">
+                        @((item.Price * item.Quantity)?.ToString("N0")) đ
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                <td class="text-danger fw-bold">
+                    @ViewBag.Total?.ToString("N0") đ
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <a asp-action="Index" class="btn btn-outline-secondary">← Tiếp tục mua</a>
+        <button type="submit" class="btn btn-success">Thanh toán</button>
+    </div>
+</form>

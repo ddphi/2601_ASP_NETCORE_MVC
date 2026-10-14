@@ -1,19 +1,17 @@
 ﻿using Lesson09.Lab.Models;
-using Lesson09.Lab.Models.DevXuongMoc;
+using DevCtx = Lesson09.Lab.Models.DevXuongMoc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("BookStoreConnection");
 builder.Services.AddDbContext<BookStoreContext>(x => x.UseSqlServer(connectionString));
 
 var xuongMocConn = builder.Configuration.GetConnectionString("DevXuongMocConnection");
-builder.Services.AddDbContext<XuongMocContext>(opt => opt.UseSqlServer(xuongMocConn));
+builder.Services.AddDbContext<DevCtx.XuongMocContext>(opt => opt.UseSqlServer(xuongMocConn));
 
-// Cấu hình sử dụng session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -25,7 +23,6 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -34,12 +31,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
-// Sử dụng session đã khai báo ở trên
 app.UseSession();
 
 app.MapControllerRoute(
