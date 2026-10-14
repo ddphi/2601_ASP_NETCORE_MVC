@@ -1,0 +1,69 @@
+﻿@model List<Lesson09.Lab.Models.DevXuongMoc.Cart>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+
+<h2 class="mb-4">Giỏ hàng của bạn</h2>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">
+        Giỏ hàng đang trống. <a asp-controller="Product" asp-action="Index">Tiếp tục mua hàng</a>
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Ảnh</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.Image" width="80" /></td>
+                    <td>@item.Title</td>
+                    <td>@item.Price?.ToString("N0") VNĐ</td>
+                    <td>
+                        <form asp-action="Update" method="post" class="d-flex">
+                            <input type="hidden" name="id" value="@item.ProductId" />
+                            <input type="number" name="quantity" value="@item.Quantity"
+                                   min="0" class="form-control form-control-sm" style="width:80px;" />
+                            <button type="submit" class="btn btn-sm btn-primary ms-1">Cập nhật</button>
+                        </form>
+                    </td>
+                    <td class="text-danger fw-bold">@item.Total?.ToString("N0") VNĐ</td>
+                    <td>
+                        <a asp-action="Remove" asp-route-id="@item.ProductId"
+                           class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                <td colspan="2" class="text-danger fw-bold fs-5">
+                    @Model.Sum(x => x.Total)?.ToString("N0") VNĐ
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+            mua hàng?
+        </a>
+        <div>
+            <a asp-action="Clear" class="btn btn-warning">Xóa toàn bộ</a>
+            <a href="#" class="btn btn-success">Đặt hàng</a>
+        </div>
+    </div>
+}

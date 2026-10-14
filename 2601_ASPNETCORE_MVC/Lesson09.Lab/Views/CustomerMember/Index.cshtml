@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập / Đăng ký";
+}
+
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">@ViewBag.Success</div>
+}
+
+<div class="row">
+    <!-- LEFT: Login -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white text-center">
+                <h4>đăng nhập</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Login" method="post">
+                    <div class="mb-3">
+                        <label>Email/Username</label>
+                        <input type="text" name="Email" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Password</label>
+                        <input type="password" name="Password" class="form-control" required />
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="Remember" class="form-check-input" />
+                        <label class="form-check-label">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Register -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white text-center">
+                <h4>đăng kí</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Register" method="post">
+                    <div class="mb-2">
+                        <label>Name</label>
+                        <input type="text" name="Name" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label>UserName</label>
+                        <input type="text" name="Username" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label>Email</label>
+                        <input type="email" name="Email" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label>Password</label>
+                        <input type="password" name="Password" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Registry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
